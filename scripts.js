@@ -70,9 +70,9 @@ function checarVitoria() {
 
 
         if (childbox1 == 'x' && childbox2 == 'x' && childbox3 == 'x') {
-            console.log("x venceu")
+            declararVencedor('x')
         } else if (childbox1 == 'o' && childbox2 == 'o' && childbox3 == 'o') {
-            console.log("o venceu")
+            declararVencedor('o')
         }
     }
 
@@ -84,9 +84,9 @@ function checarVitoria() {
 
 
         if (childbox4 == 'x' && childbox5 == 'x' && childbox6 == 'x') {
-            console.log("x venceu")
+            declararVencedor('x')
         } else if (childbox4 == 'o' && childbox5 == 'o' && childbox6 == 'o') {
-            console.log("o venceu")
+            declararVencedor('o')
         }
     }
 
@@ -98,9 +98,9 @@ function checarVitoria() {
 
 
         if (childbox7 == 'x' && childbox8 == 'x' && childbox9 == 'x') {
-            console.log("x venceu")
+            declararVencedor('x')
         } else if (childbox7 == 'o' && childbox8 == 'o' && childbox9 == 'o') {
-            console.log("o venceu")
+            declararVencedor('o')
         }
     }
 
@@ -114,9 +114,9 @@ function checarVitoria() {
 
 
         if (childbox1 == 'x' && childbox4 == 'x' && childbox7 == 'x') {
-            console.log("x venceu")
+            declararVencedor('x')
         } else if (childbox1 == 'o' && childbox4 == 'o' && childbox7 == 'o') {
-            console.log("o venceu")
+            declararVencedor('o')
         }
     }
 
@@ -128,9 +128,9 @@ function checarVitoria() {
 
 
         if (childbox2 == 'x' && childbox5 == 'x' && childbox8 == 'x') {
-            console.log("x venceu")
+            declararVencedor('x')
         } else if (childbox2 == 'o' && childbox5 == 'o' && childbox8 == 'o') {
-            console.log("o venceu")
+            declararVencedor('o')
         }
     }
 
@@ -142,9 +142,9 @@ function checarVitoria() {
 
 
         if (childbox3 == 'x' && childbox6 == 'x' && childbox9 == 'x') {
-            console.log("x venceu")
+            declararVencedor('x')
         } else if (childbox3 == 'o' && childbox6 == 'o' && childbox9 == 'o') {
-            console.log("o venceu")
+            declararVencedor('o')
         }
     }
 
@@ -158,9 +158,9 @@ function checarVitoria() {
 
 
         if (childbox1 == 'x' && childbox5 == 'x' && childbox9 == 'x') {
-            console.log("x venceu")
+            declararVencedor('x')
         } else if (childbox1 == 'o' && childbox5 == 'o' && childbox9 == 'o') {
-            console.log("o venceu")
+            declararVencedor('o')
         }
     }
 
@@ -172,25 +172,65 @@ function checarVitoria() {
 
 
         if (childbox3 == 'x' && childbox5 == 'x' && childbox7 == 'x') {
-            console.log("x venceu")
+            declararVencedor('x')
         } else if (childbox3 == 'o' && childbox5 == 'o' && childbox7 == 'o') {
-            console.log("o venceu")
+            declararVencedor('o')
         }
     }
 
     // deu velha
 
     let contador = 0;
-    
+
     for (i = 0; i < boxes.length; i++) {
-        
+
 
         if (boxes[i].childNodes[0] != undefined) {
             contador++
         }
-        
-        if(contador == 9){
-            console.log("deu velha")
+
+        if (contador == 9) {
+            declararVencedor('DEU VELHA')
         }
     }
+}
+
+function declararVencedor(vencedor) {
+    let placarx = document.querySelector("#placar-1")
+    let placaro = document.querySelector("#placar-2")
+    let msg = ''
+
+    if (vencedor == 'x') {
+        placarx.textContent = parseInt(placarx.textContent) + 1;
+        msg = "Jogador 1 venceu!"
+    } else if (vencedor == 'o') {
+        placaro.textContent = parseInt(placaro.textContent) + 1;
+        msg = "Jogador 2 venceu!"
+    } else {
+        msg = 'Deu velha!'
+    }
+
+    // exibir msg
+
+    mensagem.innerHTML = msg;
+    messsageContiner.classList.remove("hide")
+
+    // Esconder msg
+
+    setTimeout(function(){
+        messsageContiner.classList.add("hide")
+    },3000)
+     
+    // zerar jogadas
+    player1 = 0
+    player2 = 0
+
+    // remove x e o
+
+    let boxesRemove = document.querySelectorAll(".box div")
+
+    for(i = 0; i< boxesRemove.length; i++){
+        boxesRemove[i].parentNode.removeChild(boxesRemove[i]);
+    }
+
 }
