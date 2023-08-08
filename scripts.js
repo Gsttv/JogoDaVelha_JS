@@ -6,9 +6,11 @@ let messsageContiner = document.querySelector("#mensagem")
 let mensagem = document.querySelector("#mensagem p")
 let secondPlayer;
 
+// contador de jogadas
 let player1 = 0
 let player2 = 0
 
+// evento ao click no botão
 for (let i = 0; i < boxes.length; i++) {
 
     boxes[i].addEventListener("click", function () {
@@ -23,6 +25,12 @@ for (let i = 0; i < boxes.length; i++) {
             /* computar jogada, alternar entre x e o*/
             if (player1 == player2) {
                 player1++
+                if (secondPlayer == 'ia-player') {
+
+                    jogadaIa()
+
+                    player2++
+                }
             } else {
                 player2++
             }
@@ -35,9 +43,8 @@ for (let i = 0; i < boxes.length; i++) {
     })
 }
 
-function identificarJogador(player1, player2) {
 
-    let temp;
+function identificarJogador(player1, player2) {
 
     if (player1 == player2) {
         temp = x
@@ -47,6 +54,9 @@ function identificarJogador(player1, player2) {
 
     return temp
 }
+
+
+
 
 function checarVitoria() {
 
@@ -195,6 +205,8 @@ function checarVitoria() {
     }
 }
 
+
+
 function declararVencedor(vencedor) {
     let placarx = document.querySelector("#placar-1")
     let placaro = document.querySelector("#placar-2")
@@ -217,10 +229,10 @@ function declararVencedor(vencedor) {
 
     // Esconder msg
 
-    setTimeout(function(){
+    setTimeout(function () {
         messsageContiner.classList.add("hide")
-    },3000)
-     
+    }, 3000)
+
     // zerar jogadas
     player1 = 0
     player2 = 0
@@ -229,8 +241,54 @@ function declararVencedor(vencedor) {
 
     let boxesRemove = document.querySelectorAll(".box div")
 
-    for(i = 0; i< boxesRemove.length; i++){
+    for (i = 0; i < boxesRemove.length; i++) {
         boxesRemove[i].parentNode.removeChild(boxesRemove[i]);
     }
 
+}
+
+// selecionar contra qm vai jogar
+
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function () {
+        secondPlayer = this.getAttribute('id');
+
+        for (let j = 0; j < buttons.length; j++) {
+            buttons[j].style.display = 'none';
+        }
+
+        setTimeout(function () {
+            let conteiner = document.getElementById('conteiner')
+            conteiner.classList.remove('hide')
+        }, 500)
+
+    })
+}
+
+// joagada da ia
+
+function jogadaIa() {
+    let cloneO = o.cloneNode(true);
+    count = 0;
+    cheio = 0;
+
+    for (let i = 0; i < boxes.length; i++) {
+        
+        let randomNumber = Math.floor(Math.random() * 5);
+
+
+        if (boxes[i].childNodes[0] == undefined) {
+            if (randomNumber <= 1) {
+                boxes[i].appendChild(cloneO)
+                count++;
+                break;
+            }
+        } else {
+            cheio++
+        }
+    }
+
+    if (count == 0 && cheio < 9) {
+        jogadaIa();
+    }
 }
