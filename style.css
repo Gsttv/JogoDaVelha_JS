@@ -1,0 +1,132 @@
+body {
+    text-align: center;
+    font-family: Helvetica, sans-serif;
+}
+
+h1 {
+    font-size: 42px;
+}
+
+/* botões */
+
+#botoes-conteiners button {
+    border: none;
+    padding: 10px 15px;
+    margin: 0 10px;
+}
+
+/* jogo */
+
+#conteiner {
+    display: flex;
+    width: 300px;
+    margin: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.box {
+    height: 100px;
+    border: 5px solid black;
+    box-sizing: border-box;
+    flex: 1 1 33%;
+
+}
+
+#block1,
+#block2,
+#block3 {
+    border-top: none;
+}
+
+#block1,
+#block4,
+#block7 {
+    border-left: none;
+}
+
+#block7,
+#block8,
+#block9 {
+    border-bottom: none;
+}
+
+#block3,
+#block6,
+#block9 {
+    border-right: none;
+}
+
+/* X e O */
+
+#placar{
+    margin: 0 20px;
+}
+
+.x {
+    font-size: 65px;
+    color: red;
+    display: inline-block;
+    line-height: 100px;
+}
+
+.o {
+    width: 50px;
+    height: 50px;
+    border: 5px solid green;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 17px;
+}
+
+/* hide 
+
+.hide{
+    display: none !important;
+}*/
+
+/* placar */
+
+#placar-conteiner {
+    font-weight: bold;
+    margin-top: 30px;
+    font-size: 25px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+ #placar-x{
+    color: red;
+    margin-right: 3px;
+ }
+
+ #placar-o{
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid green;
+    border-radius: 50%;
+    margin-right: 3px;
+ }
+
+ /* msg vitoria */
+
+ #mensagem{
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 150px;
+    width: 500px;
+    font-size: 50px;
+    background-color: black;
+    color: white;
+    padding: 20px;
+    display: none;
+
+ }
